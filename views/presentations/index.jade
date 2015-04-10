@@ -1,3 +1,8 @@
-//
-   Created by yayes2 on 4/9/15.
+extends ../layout
 
+block head
+  link(rel="stylesheet", href="css/presentations/index.css")
+block presentations
+  for presentation in presentations
+    core-card(class="presentation-card")
+      p(class="presentation-name")= presentation.name

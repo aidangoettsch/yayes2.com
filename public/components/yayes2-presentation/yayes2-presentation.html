@@ -1,96 +1,94 @@
 <link href="../polymer/polymer.html" rel="import">
-<link href="../core-input/core-input.html" rel="import">
 
-<link href="paper-input-decorator.html" rel="import">
-
-<polymer-element name="paper-input">
+<polymer-element name="yayes2-presentation">
 
 <template>
 
   <style>
-    :host {
-      display: inline-block;
+    #pages {
+      height: 100%;
+      width: 100%;
+    }
+    #controls {
+      height: 50px;
+      width: 100%;
+      background-color: rgba(84, 84, 84, 0.27);
+    }
+    #card {
+      box-shadow: rgba(0, 0, 0, 0.0980392) 0px 2px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 3px;
+      width: 100%;
+      height: 100%
     }
   </style>
 
-  <paper-input-decorator id="decorator" label="{{label}}" floatingLabel="{{floatingLabel}}" value="{{value}}" disabled?="{{disabled}}">
-    <input is="core-input" id="input" value="{{value}}" committedValue="{{committedValue}}" on-change="{{changeAction}}" disabled?="{{disabled}}">
-  </paper-input-decorator>
+  <core-card id="card" layout vertical>
+    <core-animated-pages id="pages" selected="{{selected}}" transitions="{{transitions}}" on-click="{{forward}}">
+      <content></content>
+    </core-animated-pages>
+    <section id="controls" layout vertical center center-justify>
+      <section id="selection_display">Page {{selected - -1}}</section>
+      <section layout horizontal center center-justify>
+        <paper-icon-button icon="arrow-back" id="back" on-click="{{back}}"></paper-icon-button>
+        <paper-icon-button icon="view-module" id="view_all"></paper-icon-button>
+        <paper-icon-button icon="fullscreen" id="fullscreen" on-click="{{fullscreen}}"></paper-icon-button>
+        <paper-icon-button icon="arrow-forward" on-click="{{forward}}"></paper-icon-button>
+      </section>
+    </section>
+  </core-card>
 
 </template>
 
 <script>
-
-  Polymer('paper-input', {
-
+  var fullscreen = false;
+  Polymer('yayes2-presentation', {
     publish: {
-      /**
-       * The label for this input. It normally appears as grey text inside
-       * the text input and disappears once the user enters text.
-       *
-       * @attribute label
-       * @type string
-       * @default ''
-       */
-      label: '',
-
-      /**
-       * If true, the label will "float" above the text input once the
-       * user enters text instead of disappearing.
-       *
-       * @attribute floatingLabel
-       * @type boolean
-       * @default false
-       */
-      floatingLabel: false,
-
-      /**
-       * Set to true to style the element as disabled.
-       *
-       * @attribute disabled
-       * @type boolean
-       * @default false
-       */
-      disabled: {value: false, reflect: true},
-
-      /**
-       * The current value of the input.
-       *
-       * @attribute value
-       * @type String
-       * @default ''
-       */
-      value: '',
-
-      /**
-       * The most recently committed value of the input.
-       *
-       * @attribute committedValue
-       * @type String
-       * @default ''
-       */
-      committedValue: ''
-
+      selected: '0',
+      transitions: ''
     },
-
-    /**
-     * Focuses the `input`.
-     *
-     * @method focus
-     */
-    focus: function() {
-      this.$.input.focus();
+    back: function () {
+      if (this.$.pages.getAttribute("selected") != 0) {
+        console.info("clicked back");
+        this.$.pages.setAttribute("selected", this.$.pages.getAttribute("selected") - 1);
+        var selected = this.$.pages.getAttribute("selected") - -1;
+        this.$.selection_display.innerHTML = "Page " + selected;
+      }
     },
-
-    valueChanged: function() {
-      this.$.decorator.updateLabelVisibility(this.value);
+    forward: function () {
+      console.info("clicked forward");
+      this.$.pages.setAttribute("selected", this.$.pages.getAttribute("selected") - -1);
+      var selected = this.$.pages.getAttribute("selected") - -1;
+      this.$.selection_display.innerHTML = "Page " + selected;
     },
+    fullscreen: function () {
+      console.log(fullscreen);
+      if (!fullscreen) {
+        var i = this.$.card;
 
-    changeAction: function(e) {
-      // re-fire event that does not bubble across shadow roots
-      this.fire('change', null, this);
+        if (i.requestFullscreen) {
+          i.requestFullscreen();
+        } else if (i.webkitRequestFullscreen) {
+          i.webkitRequestFullscreen();
+        } else if (i.mozRequestFullScreen) {
+          i.mozRequestFullScreen();
+        } else if (i.msRequestFullscreen) {
+          i.msRequestFullscreen();
+        }
+        this.$.fullscreen.setAttribute("icon", "fullscreen-exit");
+        fullscreen = true;
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        }
+        this.$.fullscreen.setAttribute("icon", "fullscreen");
+        fullscreen = false;
+      }
     }
-
   });
 
 </script>

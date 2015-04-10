@@ -1,7 +1,25 @@
 {
-  "name": "application-name",
+  "name": "yayes2.com",
   "version": "0.0.1",
   "dependencies": {
-    "express": "~4.12.3"
-  }
+    "express": "~4.12.3",
+    "jade": "*",
+    "mongodb": "~2.0.27"
+  },
+  "description": "A little site for my projects",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yayestechlab/yayes2.com.git"
+  },
+  "author": "",
+  "license": "GPL",
+  "bugs": {
+    "url": "https://github.com/yayestechlab/yayes2.com/issues"
+  },
+  "homepage": "yayes2.com"
 }

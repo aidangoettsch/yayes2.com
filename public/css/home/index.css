@@ -1,0 +1,29 @@
+@-webkit-keyframes central-intro-fadein {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+@keyframes central-intro-fadein {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+.central-intro {
+    width: 100%;
+    height: 300px;
+    -webkit-animation-name: central-intro-fadein;
+    animation-name: central-intro-fadein;
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+}
+.central-intro-card {
+    margin: 20px;
+    height: 100%;
+}
+.name {
+    font-size: 100px;
+    margin: 0 0 0 20px;
+}
+@media screen and (max-width: 640px) {
+    .name {
+        font-size: 50px;
+    }
+}

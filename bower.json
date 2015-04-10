@@ -1,0 +1,25 @@
+{
+  "name": "yayes2.xom",
+  "version": "0.0.1",
+  "authors": [
+    "yayestechlab <yayestechlab@me.com>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.5.5",
+    "paper-elements": "Polymer/paper-elements#~0.5.5",
+    "font-roboto": "Polymer/font-roboto#~0.5.5",
+    "paper-dialog": "Polymer/paper-dialog#~0.5.5"
+  }
+}

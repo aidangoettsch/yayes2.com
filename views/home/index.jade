@@ -1,1 +1,9 @@
-p Hello
+extends ../layout
+
+block head
+  link(rel="stylesheet", href="css/home/index.css")
+block home
+  div(class="central-intro")
+    core-card(class="central-intro-card" layout horizontal center center-justified)
+      img(src='img/face.png')
+      p(class="name") yayes2

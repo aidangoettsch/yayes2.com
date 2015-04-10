@@ -1,0 +1,46 @@
+{
+  "home": [
+    {
+      "verb": "get",
+      "path": "/",
+      "function": "getIndex"
+    }
+  ],
+  "presentations": [
+    {
+      "verb": "get",
+      "path": "/presentations",
+      "function": "getIndex"
+    },
+    {
+      "verb": "get",
+      "path": "/presentations/:id",
+      "function": "show"
+    },
+    {
+      "verb": "get",
+      "path": "/presentations/add",
+      "function": "getAdd"
+    },
+    {
+      "verb": "get",
+      "path": "/presentations/edit",
+      "function": "getEdit"
+    },
+    {
+      "verb": "post",
+      "path": "/presentations",
+      "function": "add"
+    },
+    {
+      "verb": "put",
+      "path": "/presentations/:id",
+      "function": "edit"
+    },
+    {
+      "verb": "delete",
+      "path": "/presentations/:id",
+      "function": "deleteObj"
+    }
+  ]
+}

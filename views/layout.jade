@@ -1,3 +1,42 @@
-//
-   Created by yayes2 on 4/4/15.
-
+doctype html
+html
+  head
+    title= title
+    script(src='components/jquery/dist/jquery.min.js')
+    link(rel='stylesheet', href='components/bootstrap/dist/css/bootstrap.min.css')
+    script(src='components/bootstrap/dist/js/bootstrap.min.js')
+    script(src='js/polymer-ajax/jquery.pjax.js')
+    script(src='js/polymer-ajax/polymer.ajax.js')
+    script(src='js/global.js')
+    link(rel='stylesheet', href='css/global.css')
+    include imports.html
+    block head
+  body(unresolved fullbleed)
+    template(is="auto-binding")
+      core-media-query(query="max-width: 640px" queryMatches="{{phoneScreen}}")
+      core-drawer-panel(forceNarrow disableSwipe="{{!phoneScreen}}")
+        core-card(drawer)
+          core-menu(class="nav nav-menu" selected="0" selectedIndex="{{selected}}")
+            core-item(class="home-link" icon="home" label="Home")
+            core-item(class="random-link" icon="home" label="Other Page")
+        core-header-panel(mode="standard" class="header-panel" main)
+          core-toolbar(class="toolbar medium-tall")
+            core-icon-button(class="menu-button" icon="menu" core-drawer-toggle)
+            div yayes2
+            div(class="bottom fit")
+              paper-tabs(class="nav nav-tabs" flex selected="{{selected}}" link)
+                paper-tab(class="home-link")
+                  core-item(icon="home" label="Home")
+                paper-tab(class="presentations-link")
+                  core-item(icon="home" label="Other Page")
+            block header
+          section(id="pjax-container" class="main-section" fit)
+            core-animated-pages(class="main-pages" selected="{{selected}}" fit)
+              section(class="home-page")
+                block home
+                  div(fit layout vertical center center-justified fullbleed)
+                    paper-spinner(class="filler-spinner" active)
+              section(class="presentations-page")
+                block presentations
+                  div(fit layout vertical center center-justified fullbleed)
+                    paper-spinner(class="filler-spinner" active)

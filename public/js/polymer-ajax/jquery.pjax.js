@@ -328,6 +328,9 @@ function pjax(options) {
 
     if (typeof scrollTo == 'number') $(window).scrollTop(scrollTo)
 
+    //Set head to match
+    $("head").html(container.head);
+
     fire('pjax:success', [data, status, xhr, options])
   }
 
@@ -742,6 +745,9 @@ function extractContainer(data, xhr, options) {
 
   // Trim any whitespace off the title
   if (obj.title) obj.title = $.trim(obj.title)
+
+  obj.head = data.match(/<head[^>]*>([\s\S.]*)<\/head>/i)[0]
+  obj.head = obj.head.substring(6, obj.head.length - 7)
 
   return obj
 }
