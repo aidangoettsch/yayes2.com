@@ -4,7 +4,8 @@
   "dependencies": {
     "express": "~4.12.3",
     "jade": "*",
-    "mongodb": "~2.0.27"
+    "mongodb": "~2.0.27",
+    "yayes2core": "0.0.14-dev"
   },
   "description": "A little site for my projects",
   "main": "app.js",
